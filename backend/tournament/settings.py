@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'sports',       # ← IMPORTANT
     'matches',
     'tournaments',
+    'venues',
+    'venue_grounds',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,3 +83,4 @@ ROOT_URLCONF = 'tournament.urls'
 WSGI_APPLICATION = 'tournament.wsgi.application'
 
 STATIC_URL = 'static/'
+

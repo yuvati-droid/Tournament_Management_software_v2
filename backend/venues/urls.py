@@ -1,11 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-
-from .views import SportViewSet
+from .views import VenueViewSet, add_ground
 
 router = DefaultRouter()
-router.register(r'sports', SportViewSet)
+router.register(r'venues', VenueViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('venues/<int:id>/grounds/', add_ground, name='add-ground'),
 ]

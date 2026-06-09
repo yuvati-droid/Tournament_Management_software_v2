@@ -1,26 +1,30 @@
 from django.db import models
-
-# Create your models here.
 from django.db import models
-from django.contrib import admin
-class Sport(models.Model):
-    SCORING_TYPES = [
-        ('ball_by_ball', 'Ball By Ball'),
-        ('game_set_point', 'Game Set Point'),
-    ]
 
-    name = models.CharField(max_length=100)
+
+class Sport(models.Model):
+
+    SCORING_TYPES = (
+        ('POINTS', 'Points'),
+        ('RUNS', 'Runs'),
+        ('GOALS', 'Goals'),
+        ('SETS', 'Sets'),
+        ('CUSTOM', 'Custom'),
+    )
+
+    name = models.CharField(max_length=100, unique=True)
 
     scoring_type = models.CharField(
-        max_length=50,
+        max_length=20,
         choices=SCORING_TYPES
     )
 
-    max_players = models.IntegerField(default=0)
+    tiebreak_config = models.JSONField(
+        default=dict,
+        blank=True
+    )
 
-    reserve_players = models.IntegerField(default=0)
-
-    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
